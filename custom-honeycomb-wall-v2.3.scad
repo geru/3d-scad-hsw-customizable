@@ -1,6 +1,8 @@
 //edwin: Now 100% compatible with original. 
 //I also configured the gridsize for a bambulabs printer. (10 x 10 cells)
 
+$fn=90;
+
 /*[ Hex unit size ]*/
 
 //Depth of the grid
@@ -20,11 +22,17 @@ max_grid_height=248;
 
 
 /*[ Grid shape ]*/
-//If checked, ignores custom column sizes and fills grid to maximum size.
-fill=true;;
+column_data_index=0; // [ 0:No custom columns, 1:Original by xander, 2:IKEA365 drybox filament end, 3:IKEA365 drybox other end ]
+fill = !column_data_index;
 flip_staggering=true;
 //Amount of hexagons per column. Each entry defines a one column, where the number specifies the amount of hex units that will be generated for the respective column. (Ignored if "fill" is checked)
-columns=[3,5,8,6,4,3,4,5,6];
+column_data=[
+  [],                   // no gaps
+  [3,5,8,6,4,3,4,5,6],  // original example
+  [7,6,5,7,7,6,5,7],    // ikea365 drybox filament end
+  [4,5,4,5,4,5,4,5],    // ikea365 drybox other end
+];
+columns = column_data[column_data_index];
 include_offsets=false;
 //Optional: Offset for each column. This will ignore grid size limits.
 column_offsets=[0,-2,-3,-1,0,2,4];
