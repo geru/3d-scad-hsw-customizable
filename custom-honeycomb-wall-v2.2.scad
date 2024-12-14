@@ -11,8 +11,13 @@ hole_width = 20;
 wall_thickness = 1.8;
 
 /*[ Grid size settings ]*/
+//Bambulab:
 max_grid_width=211;
 max_grid_height=248;
+//Prusa i3 mk3:
+//max_grid_width=240;
+//max_grid_height=208;
+
 
 /*[ Grid shape ]*/
 //If checked, ignores custom column sizes and fills grid to maximum size.
@@ -113,13 +118,13 @@ module wall(height, wall_thickness, length){
     difference(){
         rotate([90,0,0])
             linear_extrude(length)   
-            polygon([[0,0], [0,hmax], [tmin,hmax], [tmin,hmax-hd], [tmax,hmin], [tmax,fh], [tmax-ft,0]]);
+            polygon([[-0.01,0], [-0.01,hmax], [tmin,hmax], [tmin,hmax-hd], [tmax,hmin], [tmax,fh], [tmax-ft,0]]);
         //Fillet
-        rotate([0,0,-30])
-            cube([4*tmax, 2*tmax, hmax]);
-        mirror([0,1,0])
-            translate([0,length,0])
-            rotate([0,0,-30])
-            cube([4*tmax, 2*tmax, hmax]);
+//        rotate([0,0,-30])
+//            cube([4*tmax, 2*tmax, hmax]);
+//        mirror([0,1,0])
+//          translate([0,length,0])
+//          rotate([0,0,-30])
+//          cube([4*tmax, 2*tmax, hmax]);
     }
 }
